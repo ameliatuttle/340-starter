@@ -1,6 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Chicle&family=Funnel+Display:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shadows+Into+Light&display=swap');
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+body {
+  font-family: "Funnel Display", sans-serif;
+}
+
+/* header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+}
+
+.siteName a {
+  font-size: 2em;
+}
+
+
+/* navigation */
+nav {
+  background-color: #B22222;
+  width: 100%;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  padding: 0 15px;
+}
+
+nav li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+
+/* welcome */
+#welcome {
+  position: relative;
+  padding: 20px;
+  height: auto;
+  color: white;
+  overflow: hidden;
+}
+
+#welcome-header {
+  text-align: left;
+  padding: 20px;
+}
+
+#delorean-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#delorean-container img {
+  width: 100%;
+  opacity: 0.8;
+}
+
+#own-today {
+  position: relative;
+  background-color: rgba(227, 225, 225, 0.879);
+  padding: 15px;
+  width: 175px;
+  border-radius: 5px;
+  color: #B22222;
+  z-index: 2;
+}
+
+#own-today h2 {
+  margin: 0;
+}
+
+#own-today img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+
+/* reviews */
+#reviews {
+  padding: 20px;
+}
+
+#reviews ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#reviews li {
+  margin-bottom: 10px;
+}
+
+
+
+/* upgrades */
+#upgrades {
+  text-align: left;
+  padding: 20px;
+}
+
+#upgrades h2 {
+  margin-bottom: 20px;
+}
+
+#upgrades-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.upgrade-box {
+  background-color: #B22222;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.upgrade-box img {
+  max-width: 100%;
+  height: auto;
+}
+
+.upgrade-box a {
+  display: block;
+  margin-top: 10px;
+  color: white;
+}
+
+
+/* larger screen */
+@media screen and (min-width: 768px) {
+
+  body {
+    background-image: url('/images/site/checkerboard.jpg');
+  }
+
+  #wrapper {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    border: 10px solid #B22222;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+  }
+
+  nav li {
+    padding: 0 15px;
+  }
+
+  #welcome {
+    min-height: 400px; 
+  }
+
+  #delorean-container {
+    width: 90%;
+    height: 100%;
+  }
+
+  #delorean-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.8;
+  }
+
+  #own-today {
+    margin-left: 10%;
+  }
+
+  #upgrade-review-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  #upgrades {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  #reviews {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
 }
