@@ -12,7 +12,7 @@ WHERE account_firstname = 'Tony' AND account_lastname = 'Stark' AND account_emai
 
 
 UPDATE public.inventory
-SET inv_description = 'A huge interior, great for off-road adventures.'
+SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
 WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 
