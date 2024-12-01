@@ -82,20 +82,32 @@ Util.buildClassificationGrid = async function (data) {
  * Build the vehicle detail HTML
  **************************************** */
 Util.buildVehicleDetailHTML = function (vehicle) {
-  let html = '<div id="vehicle-detail">';
-  html += `<h1>${vehicle.inv_make} ${vehicle.inv_model}</h1>`;
-  html += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" />`;
-  html += "<div class='vehicle-info'>";
-  html += `<p><strong>Make:</strong> ${vehicle.inv_make}</p>`;
-  html += `<p><strong>Model:</strong> ${vehicle.inv_model}</p>`;
-  html += `<p><strong>Year:</strong> ${vehicle.inv_year}</p>`;
-  html += `<p><strong>Price:</strong> $${new Intl.NumberFormat("en-US").format(vehicle.inv_price)}</p>`;
-  html += `<p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(vehicle.inv_miles)} miles</p>`;
-  html += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
-  html += "</div>";
-  html += "</div>";
-  return html;
+  let detail = {};
+
+  if (vehicle) {
+    detail.title = `${vehicle.inv_make} ${vehicle.inv_model}`;
+
+    let html = '<div id="vehicle-detail">';
+    html += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" />`;
+    html += "<div class='vehicle-info'>";
+    html += `<p><strong>Make:</strong> ${vehicle.inv_make}</p>`;
+    html += `<p><strong>Model:</strong> ${vehicle.inv_model}</p>`;
+    html += `<p><strong>Year:</strong> ${vehicle.inv_year}</p>`;
+    html += `<p><strong>Price:</strong> $${new Intl.NumberFormat("en-US").format(vehicle.inv_price)}</p>`;
+    html += `<p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(vehicle.inv_miles)} miles</p>`;
+    html += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
+    html += "</div>";
+    html += "</div>";
+
+    detail.html = html;
+  } else {
+    detail.title = "Vehicle Details Not Found";
+    detail.html = '<p class="notice">Sorry, no vehicle details could be found.</p>';
+  }
+
+  return detail;
 };
+
 
 /* ****************************************
  * Middleware For Handling Errors

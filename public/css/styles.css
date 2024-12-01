@@ -237,6 +237,64 @@ nav li a {
   color: #B22222;
 }
 
+/* Notice */
+.notice {
+  color: #B22222;
+  font-style: italic;
+}
+
+/* Login form */
+#login-form {
+  background-color: rgb(24, 71, 132); 
+  color: white;
+  border: 2px solid gray;  
+  padding: 20px;         
+  width: 300px;   
+  margin: 0 auto;  
+  border-radius: 8px;   
+  display: flex;
+  flex-direction: column;    
+}
+
+#login-form label {
+  margin-top: 10px;
+}
+
+#login-button{
+  width: 50%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc; 
+}
+
+#no-account a {
+  color: white;
+}
+
+/* Registration Form */
+#register-form {
+  background-color: rgb(233, 227, 227);
+  border: 1px solid #ccc;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;  
+}
+
+#register-form label {
+  margin-top: 10px;
+}
+
+#register-button{
+  width: 50%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc; 
+}
 
 /* larger screen */
 @media screen and (min-width: 768px) {
