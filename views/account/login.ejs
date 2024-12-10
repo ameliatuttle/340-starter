@@ -9,6 +9,13 @@
 <%# A Message Block %>
 <% messages() %>
 
+<%# Flash Message Block %>
+<% if (flashMessage) { %>
+    <div class="alert alert-success">
+        <%= flashMessage %>
+    </div>
+<% } %>
+
 <%# Login form %>
 <form id="login-form">
     <label for="email">Email:</label>

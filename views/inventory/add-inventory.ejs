@@ -1,0 +1,100 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Add Vehicle to Inventory</h1>
+<% } %>
+
+<% if (flashMessage) { %>
+    <div class="alert alert-success">
+        <%= flashMessage %>
+    </div>
+<% } %>
+
+<form id="add-inventory-form" class="site-form" action="/inv/add-inventory" method="POST" novalidate>
+    <label for="vehicleMake">Vehicle Make:</label>
+    <input 
+        type="text" 
+        id="vehicleMake" 
+        name="inv_make" 
+        required 
+        placeholder="Enter vehicle make" 
+    />
+
+    <label for="vehicleModel">Vehicle Model:</label>
+    <input 
+        type="text" 
+        id="vehicleModel" 
+        name="inv_model" 
+        required 
+        placeholder="Enter vehicle model" 
+    />
+
+    <label for="vehicleYear">Vehicle Year:</label>
+    <input 
+        type="number" 
+        id="vehicleYear" 
+        name="inv_year" 
+        required 
+        pattern="^\d{4}$" 
+        title="Enter a valid 4-digit year"
+        placeholder="Enter vehicle year (e.g., 2023)" 
+    />
+
+    <label for="vehicleDescription">Vehicle Description:</label>
+    <textarea 
+        id="vehicleDescription" 
+        name="inv_description" 
+        required 
+        placeholder="Enter a brief description of the vehicle"
+    ></textarea>
+
+    <label for="vehicleImage">Vehicle Image Path (optional):</label>
+    <input 
+        type="text" 
+        id="vehicleImage" 
+        name="inv_image" 
+        placeholder="/images/vehicles/no-image.png" 
+        value="/images/vehicles/no-image.png"
+    />
+
+    <label for="vehicleThumbnail">Vehicle Thumbnail Path (optional):</label>
+    <input 
+        type="text" 
+        id="vehicleThumbnail" 
+        name="inv_thumbnail" 
+        placeholder="/images/vehicles/no-image-tn.png" 
+        value="/images/vehicles/no-image-tn.png"
+    />
+
+    <label for="vehiclePrice">Vehicle Price:</label>
+    <input 
+        type="number" 
+        id="vehiclePrice" 
+        name="inv_price" 
+        required 
+        placeholder="Enter vehicle price (e.g., 20000)" 
+    />
+
+    <label for="vehicleMiles">Vehicle Miles:</label>
+    <input 
+        type="number" 
+        id="vehicleMiles" 
+        name="inv_miles" 
+        required 
+        placeholder="Enter vehicle mileage (e.g., 5000)" 
+    />
+
+    <label for="vehicleColor">Vehicle Color:</label>
+    <input 
+        type="text" 
+        id="vehicleColor" 
+        name="inv_color" 
+        required 
+        placeholder="Enter vehicle color (e.g., Red)" 
+    />
+
+    <label for="classificationList">Vehicle Classification:</label>
+    <%- classificationList %>
+
+    <button type="submit" class="register-button">Add Vehicle</button>
+</form>

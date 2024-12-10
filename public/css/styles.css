@@ -273,7 +273,7 @@ nav li a {
 }
 
 /* Registration Form */
-#register-form {
+.site-form {
   background-color: rgb(233, 227, 227);
   border: 1px solid #ccc;
   padding: 20px;
@@ -284,16 +284,17 @@ nav li a {
   flex-direction: column;  
 }
 
-#register-form label {
+.site-form label {
   margin-top: 10px;
 }
 
-#register-button{
+.register-button{
   width: 50%;
   padding: 10px;
   margin-top: 15px;
   border-radius: 4px;
   border: 1px solid #ccc; 
+  cursor: pointer;
 }
 
 /* larger screen */

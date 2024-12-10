@@ -43,5 +43,71 @@ async function getVehicleById(vehicleId) {
   }
 }
 
+/* ***************************
+ *  Create a new Classification and add it into the database
+ * ************************** */
+const createClassification = async function (classificationName) {
+  try {
+    // Assuming you're using an ORM or direct database calls
+    const result = await pool.query(
+      "INSERT INTO classification (classification_name) VALUES ($1)",
+      [classificationName]
+    );
+    return result;
+  } catch (error) {
+    console.error("Error inserting classification: ", error);
+    throw error; // Propagate the error for the controller to handle
+  }
+};
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById };
+/* ***************************
+ *  Add a new vehicle to the inventory
+ * ************************** */
+async function addInventory(
+  inv_make,
+  inv_model,
+  inv_year,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_miles,
+  inv_color,
+  classification_id
+) {
+  try {
+    const query = `
+      INSERT INTO inventory (
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    `;
+    const values = [
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    ];
+    const result = await pool.query(query, values);
+    return result.rowCount; // Indicates success if 1 or more rows were inserted
+  } catch (error) {
+    console.error("Error adding inventory item: ", error);
+    throw error;
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById, createClassification, addInventory };
