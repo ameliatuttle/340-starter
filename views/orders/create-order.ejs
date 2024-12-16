@@ -1,0 +1,33 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Create Order</h1>
+<% } %>
+
+<% if (flashMessage) { %>
+    <div class="alert alert-success">
+        <%= flashMessage %>
+    </div>
+<% } %>
+
+<form id="order-form" class="site-form" action="/order/create-order" method="POST" novalidate>
+
+    <h2>Customer Information</h2>
+
+    <label for="order_firstname">First Name:</label>
+    <input type="text" id="order_firstname" name="order_firstname" required>
+  
+    <label for="order_lastname">Last Name:</label>
+    <input type="text" id="order_lastname" name="order_lastname" required>
+  
+    <label for="order_email">Email:</label>
+    <input type="email" id="order_email" name="order_email" required>
+  
+    <h2>Available Inventory</h2>
+
+    <label for="inventory_id">Select Inventory:</label>
+    <%- inventoryList %>
+
+    <button type="submit" class="register-button">Submit Request</button>
+    
+</form>

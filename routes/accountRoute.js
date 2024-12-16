@@ -17,17 +17,20 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 // Process the registration data
 router.post(
     "/register",
-    regValidate.registationRules(),
+    regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
   )
 
-// Process the login attempt
+// Process the login request
 router.post(
-    "/login",
-    (req, res) => {
-      res.status(200).send('login process')
-    }
-  )
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+)
+
+// Add the new default route for account management
+router.get('/account-management', accountController.accountManagement);
 
 module.exports = router;

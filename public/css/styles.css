@@ -297,6 +297,11 @@ nav li a {
   cursor: pointer;
 }
 
+#tools a {
+  display: block;
+  margin-bottom: 10px;
+}
+
 /* larger screen */
 @media screen and (min-width: 768px) {
 

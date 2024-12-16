@@ -245,3 +245,13 @@ UPDATE public.inventory
 SET 
     inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+CREATE TABLE IF NOT EXISTS public.order
+(
+    order_id SERIAL PRIMARY KEY,
+    order_firstname VARCHAR(255) NOT NULL,
+    order_lastname VARCHAR(255) NOT NULL,
+    order_email VARCHAR(255) NOT NULL,
+    inventory_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

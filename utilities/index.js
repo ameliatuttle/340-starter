@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model");
 const Util = {};
+const pool = require('../database');
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -135,6 +136,36 @@ Util.buildClassificationList = async function (classification_id = null) {
 
   classificationList += "</select>";
   return classificationList;
+};
+
+/* ***************************
+ *  Build Inventory Dropdown List
+ * *************************** */
+Util.buildInventoryList = async function () {
+  try {
+    // Set up the inventory dropdown
+    let inventoryList = '<select name="inventory_id" id="inventoryList" required>';
+    
+    // Query to get all inventory items
+    const data = await pool.query('SELECT * FROM inventory'); 
+    
+    // Check if any inventory exists
+    if (data.rows.length === 0) {
+      inventoryList += "<option value=''>None available</option>";
+    } else {
+      // populate the dropdown
+      data.rows.forEach((row) => {
+        inventoryList += `<option value="${row.inv_id}">${row.inv_make} ${row.inv_model} ${row.inv_year} - $${row.inv_price}</option>`;
+      });
+    }
+
+    inventoryList += "</select>";
+    return inventoryList;
+
+  } catch (error) {
+    console.error("Error fetching inventory:", error);
+    return "<select name='inventory_id' id='inventoryList' required><option value=''>Error fetching inventory</option></select>";
+  }
 };
 
 module.exports = Util;

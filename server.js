@@ -17,8 +17,10 @@ const errorRoute = require("./routes/errorRoute.js")
 app.use(errorRoute); 
 const session = require("express-session")
 const pool = require('./database/')
-const accountController = require("./routes/accountRoute.js")
+const accountRoute = require("./routes/accountRoute.js")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const orderRoute = require("./routes/orderRoute.js");
 
 /* ***********************
  * Middleware
@@ -34,15 +36,19 @@ app.use(session({
   name: 'sessionId',
 }))
 
-// Express Messages Middleware
+// Express Flash Middleware
 app.use(require('connect-flash')())
+
+// Use this to pass flash messages into all views
 app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
-  next()
+  res.locals.flashMessage = req.flash('notice')[0];  // this will pass the flash message to all views
+  next();
 })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.use(cookieParser())
 
 /* ***********************
  * View Engine and Templates
@@ -66,7 +72,10 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 
 // Account routes
-app.use("/account", accountController)
+app.use("/account", accountRoute)
+
+// Order routes
+app.use("/order", orderRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
